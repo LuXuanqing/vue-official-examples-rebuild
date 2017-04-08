@@ -5,7 +5,8 @@ new Vue({
   data: {
     branches: ['master', 'dev'],
     currentBranch: 'master',
-    commits: null
+    hasCommits: false,
+    commits: null,
   },
   created: function() {
     this.fetchData()
@@ -34,6 +35,9 @@ new Vue({
       xhr.onload = function() {
         if (this.status == 200) {
           self.commits = JSON.parse(xhr.responseText)
+          self.hasCommits = true;
+        } else {
+          self.hasCommits = false;
         }
       }
       xhr.send()
