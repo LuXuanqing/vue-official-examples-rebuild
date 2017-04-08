@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Firebase + 验证</title>
+  <link rel="stylesheet" href="./style/firebasevalidation.css">
+  <script src="./script/vue.js" charset="utf-8"></script>
+  <!-- Firebase -->
+  <script src="https://gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+  <!-- VueFire -->
+  <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+</head>
+<body>
+  <div id="fire">
+    <ul is="transition-group">
+      <li v-for="user in users" class="user" v-bind:key="user['.key']">
+        <span>{{user.name}} - {{user.email}}</span>
+        <button v-on:click="removeUser(user)">&times;</button>
+      </li>
+    </ul>
+    <form id="form" v-on:submit.prevent="addUser">
+      <input type="text" v-model="newUser.name" placeholder="Username">
+      <input type="email" v-model="newUser.email" placeholder="email@email.com">
+      <input type="submit" value="Add User">
+    </form>
+    <ul class="errors">
+      <li v-show="!validation.name">name cannot be empty.</li>
+      <li v-show="!validation.email">please provide a valid emial address.</li>
+    </ul>
+  </div>
+  <script src="./script/firebasevalidation.js" charset="utf-8"></script>
+</body>
+</html>
