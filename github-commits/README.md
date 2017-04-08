@@ -7,5 +7,5 @@
 - created
 - filters
 - watch
-- XMLHttpRequest
+- XMLHttpRequesvt
 - Github API
