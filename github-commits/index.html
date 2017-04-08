@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Github commits</title>
+  <link rel="stylesheet" href="./style/git.css">
+  <script src="./script/vue.js" charset="utf-8"></script>
+</head>
+<body>
+  <div id="git">
+    <h1>本仓库最新的commits</h1>
+    <template v-for="item in branches">
+      <input type="radio" v-bind:id="item" v-bind:value="item" name="branch" v-model="currentBranch">
+      <label v-bind:for="item">{{item}}</label>
+    </template>
+    <p>LuXuanqing/vue-official-examples-rebuild@{{currentBranch}}</p>
+    <ul>
+      <li v-for="record in commits">
+        <a v-bind:href="record.html_url" target="_blank" class="commit">{{record.sha.slice(0, 7)}}</a>
+        - <span class="message">{{record.commit.message | truncate}}</span><br>
+        by <span class="author"><a v-bind:href="record.author.html_url" target="_blank">{{record.commit.author.name}}</a></span>
+        at <span class="date">{{record.commit.author.date | formatDate}}</span>
+      </li>
+    </ul>
+  </div>
+  <script src="./script/git.js" charset="utf-8"></script>
+</body>
+</html>
